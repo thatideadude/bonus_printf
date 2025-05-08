@@ -14,15 +14,15 @@
 
 int	find_hex_mag(unsigned long long nb)
 {
-	int	len;
+	int	mag;
 
-	len = 1;
+	mag = 1;
 	while (nb >= 16)
 	{
 		nb /= 16;
-		len++;
+		++mag;
 	}
-	return (len);
+	return (mag);
 }
 
 int	put_hex(unsigned long long nb, char *base)
@@ -37,15 +37,15 @@ int	put_hex(unsigned long long nb, char *base)
 
 int	print_hex_precision(unsigned long long nb, t_flags flags, char *base)
 {
-	int	digits;
+	int	nmag;
 	int	count;
 
 	count = 0;
-	digits = find_hex_mag(nb);
-	while (digits < flags.precision)
+	nmag = find_hex_mag(nb);
+	while (nmag < flags.precision)
 	{
 		count += ft_putchar('0');
-		digits++;
+		++nmag;
 	}
 	count += put_hex(nb, base);
 	return (count);
